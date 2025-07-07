@@ -43,20 +43,6 @@ jobs:
           username: ${{ secrets.GH_USERNAME }}
           password: ${{ secrets.GH_TOKEN }}
 
-      # - name: Uninstall previous versions of Docker packages
-      #   run: |
-      #     sudo apt-get remove -y docker docker-engine docker.io containerd runc
-      #     sudo apt-get autoremove -y
-      #     sudo apt-get clean
-      #     sudo rm -rf /var/lib/docker
-      #     sudo rm -rf /var/lib/containerd
-      #     sudo rm -rf /var/lib/runc
-
-      # - name: Set up Docker Compose
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y docker-compose-v2
-
       - name: Start Docker Compose
         run: |
           if [ "${{ matrix.profile }}" = "standalone" ]; then
@@ -81,14 +67,14 @@ jobs:
             sleep 5
           done
           echo "Some services failed to become healthy:"
-          docker-compose ps
-          docker-compose logs
+          docker compose ps
+          docker compose logs
           exit 1
 
       - name: Show logs (on failure)
         if: failure()
-        run: docker-compose logs
+        run: docker compose logs
 
       - name: Tear down
         if: always()
-        run: docker-compose down -v
+        run: docker compose down -v
