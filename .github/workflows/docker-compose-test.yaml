@@ -25,14 +25,20 @@ jobs:
       - name: Set up Docker Compose
         run: |
           sudo apt-get update
-          sudo apt-get install -y docker-compose
+          sudo apt-get install -y docker-compose-v2
+
+      - name: Docker version
+        run: docker version
+
+      - name: Docker Compose version
+        run: docker compose version
 
       - name: Start Docker Compose 
         run: |
           if [ "${{ matrix.profile }}" = "standalone" ]; then
-            docker-compose --profile standalone up -d
+            docker compose --profile standalone up -d
           else
-            docker-compose up -d
+            docker compose up -d
           fi
 
       - name: Show running containers
