@@ -22,6 +22,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Uninstall previous versions of Docker packages
+        run: |
+          sudo apt-get remove -y docker docker-engine docker.io containerd runc
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+          sudo rm -rf /var/lib/docker
+          sudo rm -rf /var/lib/containerd
+          sudo rm -rf /var/lib/runc
+
       - name: Set up Docker Compose
         run: |
           sudo apt-get update
