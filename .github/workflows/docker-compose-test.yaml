@@ -29,19 +29,19 @@ jobs:
       - name: Docker Compose version
         run: docker compose version
 
-      - name: Uninstall previous versions of Docker packages
-        run: |
-          sudo apt-get remove -y docker docker-engine docker.io containerd runc
-          sudo apt-get autoremove -y
-          sudo apt-get clean
-          sudo rm -rf /var/lib/docker
-          sudo rm -rf /var/lib/containerd
-          sudo rm -rf /var/lib/runc
+      # - name: Uninstall previous versions of Docker packages
+      #   run: |
+      #     sudo apt-get remove -y docker docker-engine docker.io containerd runc
+      #     sudo apt-get autoremove -y
+      #     sudo apt-get clean
+      #     sudo rm -rf /var/lib/docker
+      #     sudo rm -rf /var/lib/containerd
+      #     sudo rm -rf /var/lib/runc
 
-      - name: Set up Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose-v2
+      # - name: Set up Docker Compose
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y docker-compose-v2
 
       - name: Start Docker Compose
         run: |
