@@ -62,8 +62,11 @@ jobs:
             if [ -z "$unhealthy" ]; then
               echo "All services healthy!"
               exit 0
+            else
+              echo "Unhealthy services: $unhealthy"
+              sleep 5
             fi
-            echo "Waiting for services to be healthy..."
+            echo "Waiting for services to be healthy... $i"
             sleep 5
           done
           echo "Some services failed to become healthy:"
