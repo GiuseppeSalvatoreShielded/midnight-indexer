@@ -57,7 +57,9 @@ jobs:
       - name: Wait for services to be healthy
         run: |
           # Wait for up to 60 seconds for all healthchecks to pass
+          docker compose ps
           sleep 5
+          docker compose ps
           for i in {1..60}; do
             unhealthy=$(docker compose ps | grep -E 'unhealthy|starting')
             if [ -z "$unhealthy" ]; then
@@ -67,6 +69,7 @@ jobs:
               echo "Unhealthy services: $unhealthy"
             fi
             echo "Waiting for services to be healthy... $i"
+            docker compose ps
             sleep 1
           done
           echo "Some services failed to become healthy:"
