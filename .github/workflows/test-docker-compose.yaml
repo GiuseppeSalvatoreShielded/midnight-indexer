@@ -52,13 +52,13 @@ jobs:
           fi
 
       - name: Show running containers
-        run: docker-compose ps
+        run: docker compose ps
 
       - name: Wait for services to be healthy
         run: |
           # Wait for up to 60 seconds for all healthchecks to pass
           for i in {1..12}; do
-            unhealthy=$(docker-compose ps | grep -E 'unhealthy|starting')
+            unhealthy=$(docker compose ps | grep -E 'unhealthy|starting')
             if [ -z "$unhealthy" ]; then
               echo "All services healthy!"
               exit 0
