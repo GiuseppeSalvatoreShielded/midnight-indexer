@@ -29,19 +29,19 @@ jobs:
       - name: Docker Compose version
         run: docker compose version
 
-      # - name: Add github.com credentials to netrc
-      #   uses: extractions/netrc@v2
-      #   with:
-      #     machine: github.com
-      #     username: ${{ secrets.GH_USERNAME }}
-      #     password: ${{ secrets.GH_TOKEN }}
+      - name: Add github.com credentials to netrc
+        uses: extractions/netrc@v2
+        with:
+          machine: github.com
+          username: ${{ secrets.GH_USERNAME }}
+          password: ${{ secrets.GH_TOKEN }}
 
-      # - name: Log in to GHCR
-      #   uses: docker/login-action@v3
-      #   with:
-      #     registry: ghcr.io
-      #     username: ${{ secrets.GH_USERNAME }}
-      #     password: ${{ secrets.GH_TOKEN }}
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GH_USERNAME }}
+          password: ${{ secrets.GH_TOKEN }}
 
       - name: Start Docker Compose
         run: |
